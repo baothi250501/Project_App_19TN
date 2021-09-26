@@ -26,13 +26,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MC"/>
+            android:text="MC"
+            android:onClick="onNhanNutMC"/>
         <Button
             android:id="@+id/buttonMR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MR"/>
+            android:text="MR"
+            android:onClick="onNhanNutMC"/>
 
         <Button
             android:id="@+id/buttonMplus"
