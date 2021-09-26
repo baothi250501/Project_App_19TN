@@ -4,11 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private View.OnClickListener helper = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            ((Button) v).setText("Clicked!");
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         Button button = new Button(this);
         button.setText(label);
         button.setId(id);
+
+        button.setOnClickListener(helper);
         return button;
     }
 
@@ -73,5 +82,13 @@ public class MainActivity extends AppCompatActivity {
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setId(id);
         return linearLayout;
+    }
+
+    public void onNhanNutMC(View view){
+        Button btn = (Button)view;
+        if (btn.getId()==R.id.buttonMC)
+            btn.setText("MC Clicked");
+        else if (btn.getId()==R.id.buttonMR)
+            btn.setText("MR Clicked");
     }
 }
