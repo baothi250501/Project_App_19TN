@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:id="@+id/linearlayoutmain"    >
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text=""
+        android:textAlignment="viewEnd"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/buttonMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MC"
+            android:onClick="onNhanNutMC"/>
+        <Button
+            android:id="@+id/buttonMR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MR"
+            android:onClick="onNhanNutMC"/>
+
+        <Button
+            android:id="@+id/buttonMplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M+"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/buttonMminus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M-"/>
+        <Button
+            android:id="@+id/buttonMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MS"/>
+        <Button
+            android:id="@+id/buttonM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M"/>
+    </LinearLayout>
+
+</LinearLayout>
