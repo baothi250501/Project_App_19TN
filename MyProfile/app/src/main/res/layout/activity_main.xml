@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Giới thiệu bản thân"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#87cefa"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_marginBottom="10sp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp">
+
+        <ImageView
+            android:layout_width="500px"
+            android:layout_height="500px"
+            android:src="@drawable/image1"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xin chào, mình tên là Nguyễn Lê Bảo Thi. Hiện đang là sinh viên năm ba ngành Công nghệ thông tin trường đại học Khoa học Tự nhiên. Mình thích chơi bóng chuyền, vẽ tranh và ngồi ngắm mây."
+        android:layout_marginBottom="10sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Các món ăn yêu thích"
+        android:background="#87cefa"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10sp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400px"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="1sp"
+            android:layout_weight="1"
+            android:src="@drawable/food1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/food2"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lời nhắn cho chủ sở hữu"
+        android:background="#87cefa"
+        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
