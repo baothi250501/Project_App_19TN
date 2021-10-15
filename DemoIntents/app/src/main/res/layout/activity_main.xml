@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8FF"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/alarmClockDemo"
+        style="@style/CategoryStyle"
+        android:background="#4CB5F5"
+        android:text="Alarm Clock Demo" />
+
+    <TextView
+        android:id="@+id/calendarDemo"
+        style="@style/CategoryStyle"
+        android:background="#34675C"
+        android:text="Calendar Demo" />
+
+    <TextView
+        android:id="@+id/cameraDemo"
+        style="@style/CategoryStyle"
+        android:background="#B3C100"
+        android:text="Camera Demo" />
+
+
+</LinearLayout>
