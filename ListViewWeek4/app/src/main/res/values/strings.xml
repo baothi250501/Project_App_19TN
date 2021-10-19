@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ListViewWeek4</string>
+    <string name="myArray">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string>
+</resources>
