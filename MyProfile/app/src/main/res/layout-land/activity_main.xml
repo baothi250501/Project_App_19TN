@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#87cefa"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="My Profile"
+        android:textAllCaps="true"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="500px">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="500px"
+            android:layout_height="match_parent"
+            android:src="@drawable/image1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Xin chào, mình tên là Nguyễn Lê Bảo Thi. Hiện đang là sinh viên năm ba ngành Công nghệ thông tin trường đại học Khoa học Tự nhiên. Mình thích chơi bóng chuyền, vẽ tranh và ngồi ngắm mây."/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lời nhắn cho chủ sở hữu"
+        android:background="#87cefa"
+        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
