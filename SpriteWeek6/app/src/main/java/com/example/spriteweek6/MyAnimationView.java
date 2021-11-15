@@ -16,6 +16,12 @@ import java.util.TimerTask;
 
 public class MyAnimationView extends View {
 
+    private int selectedIndex = -1;
+    private float oldx;
+    private float oldy;
+    private int screenWidth = 1024;
+    private int screenHeight = 1024;
+
     public MyAnimationView(Context context) {
         super(context);
         prepareContent();
@@ -79,6 +85,13 @@ public class MyAnimationView extends View {
         createSpriteWithASingleImage(left, top, resID);
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        screenHeight = h;
+        screenWidth = w;
+    }
+
     private void createSpriteWithASingleImage(int left, int top, int resID) {
         Bitmap[] bmps = new Bitmap[1];
         bmps[0] = BitmapFactory.decodeResource(getResources(), resID);
@@ -88,7 +101,15 @@ public class MyAnimationView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRGB(0, 0, 255);
+        renderAll(); //flicker-free
+        canvas.drawBitmap(bmpAll, 0, 0, null);
+    }
+
+    private Bitmap bmpAll = null;
+    private void renderAll() {
+        bmpAll = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmpAll);
+        canvas.drawRGB(255, 255, 255);
         for (int i = 0; i < sprites.size(); ++i){
             sprites.get(i).draw(canvas);
         }
@@ -105,25 +126,62 @@ public class MyAnimationView extends View {
         switch(maskedAction){
             case MotionEvent.ACTION_DOWN:{
                 tempIdx = getSelectedSpriteIndex(x, y);
-                if (tempIdx != -1){
+                /*if (tempIdx != -1){
                     selectSprite(tempIdx);
                     invalidate();
-                }
+                }*/
+                beginDrag(x, y);
                 break;
 
             }
             case MotionEvent.ACTION_MOVE:{
+                processDrag(x, y);
                 break;
             }
             case MotionEvent.ACTION_UP: {
+                endDrag(x, y);
                 break;
             }
         }
         return true;
     }
 
+    private void beginDrag(float x, float y) {
+        int tempIdx = getSelectedSpriteIndex(x, y);
+
+        if (tempIdx != -1){
+            selectedIndex = tempIdx;
+            oldx = x;
+            oldy = y;
+
+            selectSprite(selectedIndex);
+            /*if (onSpriteClickListener != null){
+                onSpriteClickListener.OnSpriteClick(this, x, y, selectedIndex);
+            }*/
+            invalidate();
+        }
+        else selectedIndex = -1;
+    }
+
+    private void processDrag(float x, float y) {
+        float dx = x - oldx;
+        float dy = y - oldy;
+        if (selectedIndex!=-1){
+            sprites.get(selectedIndex).left+=dx;
+            sprites.get(selectedIndex).top+=dy;
+            invalidate();
+        }
+        oldx = x;
+        oldy = y;
+    }
+
+    private void endDrag(float x, float y) {
+        processDrag(x, y);
+        selectedIndex = -1;
+    }
+
     private int getSelectedSpriteIndex(float x, float y) {
-        for (int i = sprites.size() - 1; i >= 1; --i){
+        for (int i = sprites.size() - 1; i >= 0; --i){
             if (sprites.get(i).isSelected(x,y)) {
                 return i;
             }
@@ -132,7 +190,7 @@ public class MyAnimationView extends View {
     }
 
     private void selectSprite(int newIdx){
-        for (int i = 0; i < sprites.size() - 1; ++i){
+        for (int i = 0; i < sprites.size(); ++i){
             sprites.get(i).State = (newIdx == i) ? true:false;
         }
     }
