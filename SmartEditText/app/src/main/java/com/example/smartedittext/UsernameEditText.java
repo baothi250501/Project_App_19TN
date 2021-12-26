@@ -1,4 +1,4 @@
-package com.example.gameweek2;
+package com.example.smartedittext;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,44 +17,42 @@ public class UsernameEditText extends EditText {
         super(context, attrs);
     }
 
-    interface onLostFocus
-    {
+    interface onKeyUpListener{
+        void process(int keyCode);
+    }
+
+    private onKeyUpListener keyUpListener = null;
+
+    public void setKeyUpListener(onKeyUpListener listener){
+        keyUpListener = listener;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        boolean b =  super.onKeyUp(keyCode, event);
+        if (keyUpListener != null){
+            keyUpListener.process(keyCode);
+        }
+        return b;
+    }
+
+    interface  onLostFocus{
         void process(EditText editText);
     }
 
     private onLostFocus onLostFocusListener = null;
 
-    public void setOnLostFocusListener(onLostFocus listener)
-    {
+    public void setOnLostFocusListener(onLostFocus listener){
         onLostFocusListener = listener;
-    }
-
-
-    interface  onKeyUpListener
-    {
-        void process (int keyCode);
-    }
-
-    private onKeyUpListener keyUpListener = null;
-    public void setKeyUpListener(onKeyUpListener listener)
-    {
-        keyUpListener = listener;
-    }
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        boolean b =  super.onKeyUp(keyCode, event);
-        if (keyUpListener!=null)
-            keyUpListener.process(keyCode);
-        return b;
     }
 
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if (focused==false)
-        {
-            if (onLostFocusListener!=null)
+        if (!focused){
+            if (onLostFocusListener != null){
                 onLostFocusListener.process(this);
+            }
         }
     }
 }

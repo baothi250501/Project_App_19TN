@@ -13,7 +13,7 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String strHelloString = intent.getStringExtra("helloString");
+        //String strHelloString = intent.getStringExtra("helloString");
         int nDefaultRowCount = intent.getIntExtra("defaultRowCount", 2);
         int nDefaultColumnCount = intent.getIntExtra("defaultColumnCount", 2);
         setEditTextContentWithInteger(R.id.editRowCount, nDefaultRowCount);
@@ -22,8 +22,8 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void setEditTextContentWithInteger(int idEditText, int v) {
-        EditText editText = (EditText)findViewById(idEditText);
-        editText.setText(String.valueOf(v));
+        EditText editText = findViewById(idEditText);
+        //editText.setText(String.valueOf(v));
     }
 
     public void onOK(View view) {
@@ -37,7 +37,7 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private int getIntegerFromEditText(int idEditText) {
-        EditText editText = (EditText)findViewById(idEditText);
+        EditText editText = findViewById(idEditText);
         String s = editText.getText().toString();
         return Integer.parseInt(s);
     }

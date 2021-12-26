@@ -9,18 +9,14 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridLayout;
 
-public class MainActivity extends AppCompatActivity implements UsernameEditText.onLostFocus, UsernameEditText.onKeyUpListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UsernameEditText usernameEditText = (UsernameEditText)findViewById(R.id.editTextUserName);
-        usernameEditText.setOnLostFocusListener(this);
-        usernameEditText.setKeyUpListener(this);
     }
 
     public void onNewGame(View view) {
@@ -28,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements UsernameEditText.
         intent.putExtra("helloString", "Hello World");
         intent.putExtra("defaultRowCount", 5);
         intent.putExtra("defaultColumnCount", 5);
-        //startActivity(intent); // không quan tâm kết quả trả về
-        startActivityForResult(intent, 1234);
+        startActivity(intent); // Khong quan tam ket qua tra ve
+        //startActivityForResult(intent, 1234);
     }
 
     @Override
@@ -70,29 +66,12 @@ public class MainActivity extends AppCompatActivity implements UsernameEditText.
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         if (newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
         {
-            //setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
         }
         else if (newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            //setContentView(R.layout.activity_main);// layout khác
+            setContentView(R.layout.activity_main);// layout khác
         }
         super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void process(EditText editText) {
-        String s = editText.getText().toString();
-        Button btn  = (Button)findViewById(R.id.buttonLogin);
-        if (s.length()==0)
-            btn.setText("Cannot press");
-        else
-            btn.setText("Can press");
-        //btn.setClickable(!s.isEmpty());;
-    }
-
-    @Override
-    public void process(int keyCode) {
-        EditText editText = (EditText)findViewById(R.id.myEditText);
-        editText.setText(String.valueOf(keyCode));
     }
 }

@@ -1,6 +1,5 @@
-package com.example.gameweek2;
+package com.example.smartedittext;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -9,11 +8,9 @@ import android.widget.EditText;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressLint("AppCompatCustomView")
-public class SmartEditText extends EditText {
+public class SmartEditText extends androidx.appcompat.widget.AppCompatEditText {
 
-    interface MyOperation
-    {
+    interface MyOperation{
         int process(int a, int b);
     }
 
@@ -31,15 +28,12 @@ public class SmartEditText extends EditText {
         }
     };
 
-
-    private  MyOperation multiplication = new MyOperation() {
+    private MyOperation multiplication = new MyOperation() {
         @Override
         public int process(int a, int b) {
             return a*b;
         }
     };
-
-
 
     public SmartEditText(Context context) {
         super(context);
@@ -49,18 +43,14 @@ public class SmartEditText extends EditText {
         super(context, attrs);
     }
 
-    private Map<String, MyOperation> myOperationMap = null;
-
+    private Map<String, MyOperation> myOperationMap;
 
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if (focused) // bắt đầu nhập liệu, nhập tiếp
-        {
+        if (focused){ //Bat dau nhap lieu, nhap tiep
             this.setText("");
-        }
-        else // nhập xong
-        {
+        } else { //Nhap xong
             String s = this.getText().toString();
             if (myOperationMap==null) {
                 myOperationMap = new HashMap<>();
@@ -70,11 +60,11 @@ public class SmartEditText extends EditText {
                 myOperationMap.put("x", multiplication);
                 myOperationMap.put(".", multiplication);
             }
-            if (s.length()>0) {
-                String[] tokens = s.split(" "); // 123 + 456
+            if(s.length()>0){
+                String[] tokens = s.split(" ");
                 int a = Integer.parseInt(tokens[0]);
                 int b = Integer.parseInt(tokens[2]);
-                //        int c = a + b;
+                // int c = a + b;
                 int c = myOperationMap.get(tokens[1]).process(a, b);
                 this.setText(String.valueOf(c));
             }
