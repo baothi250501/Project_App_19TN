@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.widget.EditText;
 
 import androidx.core.content.ContextCompat;
 
@@ -18,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Objects;
 
 
-public class PasswordEditText extends TextInputEditText {
+public class PasswordEditText extends androidx.appcompat.widget.AppCompatEditText {
 
 
     private final static int EXTRA_TAPPABLE_AREA = 50;
