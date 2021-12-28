@@ -66,8 +66,7 @@ public class PasswordEditText extends TextInputEditText {
                 styledAttributes.recycle();
             }
         }
-
-        // As the state (like alpha) should not be shared, mutate to make sure it is not reused
+        
         showIconDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), showIcon)).mutate();
         hideIconDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), hideIcon)).mutate();
 
@@ -107,12 +106,12 @@ public class PasswordEditText extends TextInputEditText {
         } else {
             final Rect bounds = showIconDrawable.getBounds();
             final int x = (int) event.getX();
-            int iconXRect = getRight() - bounds.width() - EXTRA_TAPPABLE_AREA;
+            int iconArea = getRight() - bounds.width() - EXTRA_TAPPABLE_AREA;
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     if (isHoverShow) {
-                        if (x >= iconXRect) {
+                        if (x >= iconArea) {
                             togglePasswordIcon();
                             event.setAction(MotionEvent.ACTION_CANCEL);
                             isHandleHoverEvent = true;
@@ -120,7 +119,7 @@ public class PasswordEditText extends TextInputEditText {
                     }
                     break;
                 case MotionEvent.ACTION_UP:
-                    if (isHandleHoverEvent || (x >= iconXRect)) {
+                    if (isHandleHoverEvent || (x >= iconArea)) {
                         togglePasswordIcon();
                         event.setAction(MotionEvent.ACTION_CANCEL);
                         isHandleHoverEvent = false;
@@ -138,7 +137,7 @@ public class PasswordEditText extends TextInputEditText {
             isShowIcon = true;
             setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
         } else {
-            // reset drawable
+
             setCompoundDrawables(null, null, null, null);
             isShowIcon = false;
         }
